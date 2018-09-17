@@ -33,9 +33,14 @@ namespace VartasAssignment
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+<<<<<<< HEAD
                       "~/Content/foundation.css",
                       "~/Content/app.css"
                        ));
+=======
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
+>>>>>>> parent of debc9da... Tehtävä 1
         }
     }
 }
