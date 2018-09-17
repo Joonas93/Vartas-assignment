@@ -8,17 +8,44 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-   
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Joónas Eskonheimo</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="dropdown vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown" data-auto-height="true" data-animate-height="true">
+            <li class="menu-text">Elokuvateatteri X</li>
+            <li>
+                @Html.ActionLink("Koti1", null)
+                <ul class="menu">
+                    <li>
+                        @Html.ActionLink("Koti2", null)
+                        <ul class="menu">
+                            <li>
+                                @Html.ActionLink("Koti3", null)
+                                <ul class="menu">
+                                    <li>@Html.ActionLink("Etusivu", "Index", "Home") </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@RenderBody()
+
+<div class="grid-container">
+   <br/>
+    <hr />
+    <footer>
+        <p align="center">&copy;  Joonas Eskonheimo</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/UIFoundation")
+@RenderSection("scripts", required: false)
 </body>
 </html>

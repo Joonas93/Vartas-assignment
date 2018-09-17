@@ -21,10 +21,17 @@ namespace VartasAssignment
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/UIFoundation").Include(
+                "~/Scripts/foundation.js",
+                "~/Scripts/what-input.js",
+                "~/Scripts/jquery.js",
+                "~/Scripts/app.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lux.css",
-                      "~/Content/site.css"));
+                      "~/Content/foundation.css",
+                      "~/Content/app.css"
+                       ));
         }
     }
 }
