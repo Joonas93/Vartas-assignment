@@ -14,8 +14,8 @@ namespace VartasAssignment.Models
         public string movieName { get; set; }
         [Display(Name = "Genre")]
         public string category { get; set; }
-        [Display(Name = "Kuvaus")]
-        public string description { get; set; }
+        [Display(Name = "Ikäraja")]
+        public string rating { get; set; }
         [Display(Name = "Alkaa")]
         public string startTime { get; set; }
         [Display(Name = "Loppuu")]
@@ -27,11 +27,11 @@ namespace VartasAssignment.Models
 
         }
 
-        public Movie(String name, String category, String description, String startTime, String endTime)
+        public Movie(String name, String category, String rating, String startTime, String endTime)
         {
             this.movieName = name;
             this.category = category;
-            this.description = description;
+            this.rating = rating;
             this.startTime = startTime;
             this.endTime = endTime;
         }
