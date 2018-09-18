@@ -9,11 +9,7 @@ namespace VartasAssignment
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"
-                        ));
-
-            bundles.Add(new ScriptBundle("~/bundles/otherscripts").Include(
-                "~/Scripts/finnkino.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,25 +21,10 @@ namespace VartasAssignment
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
-            bundles.Add(new ScriptBundle("~/bundles/UIFoundation").Include(
-                "~/Scripts/foundation.js",
-                "~/Scripts/what-input.js",
-                "~/Scripts/jquery.js",
-                "~/Scripts/app.js"
-                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                      "~/Content/foundation.css",
-                      "~/Content/app.css"
-                       ));
-=======
-=======
->>>>>>> parent of debc9da... Tehtävä 1
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-lux.css",
                       "~/Content/site.css"));
->>>>>>> parent of debc9da... Tehtävä 1
         }
     }
 }

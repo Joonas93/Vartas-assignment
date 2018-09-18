@@ -1,127 +1,120 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-<<<<<<< HEAD
-<<<<<<< HEAD
+﻿
+@using VartasAssignment.Models
 
-=======
->>>>>>> parent of debc9da... Tehtävä 1
-=======
->>>>>>> parent of debc9da... Tehtävä 1
+
+
+
+
+@{
+    ViewBag.Title = "Home Page";
+    
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@*Jätetty sivu valmiiksi pohjaksi seuraaville tehtäville.*@
+
 
 <div class="row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x grid-padding-y">
-            <div class="medium-3 cell">
-                <h3>Lisää elokuva</h3>
-                <form method="post">
-                    <div class="form-group">
-                        @Html.Label("movieName", "Elokuvan nimi: ")
-                        @Html.TextBox("movieName", null, new { @class = "form-control" })
-                        @Html.Label("description", "Kuvaus: ")
-                        @Html.TextArea("description", new { @class = "form-control" })
-                        @Html.Label("category", "Genre: ")
-                        @Html.DropDownList("category",
-                            new SelectList(Enum.GetValues(typeof(Movie.ECategory))),
-                            new {@class = "form-control"})
-                        <br>
-                        <fieldset>
-                            <legend>Esitysaika</legend>
-                            <div class="row">
-                                <div class="grid-container">
-                                    <div class="grid-x">
-                                        <div class="medium-6">
-                                            @Html.Label("Alkaa")
-                                            <div class="radio">
-                                                <label>@Html.RadioButton("startTime", "15:00") 15:00</label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>@Html.RadioButton("startTime", "16:00") 16:00</label>
-                                            </div>
-                                        </div>
-                                        <div class="medium-6">
-                                            @Html.Label("Loppuu")
-                                            <div class="radio">
-                                                <label>@Html.RadioButton("endTime", "17:00") 17:00</label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>@Html.RadioButton("endTime", "18:00") 18:00</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="col-md-3">
+        <h3>Lisää elokuva</h3>
+        @using (Html.BeginForm("CreateStory", "Story")) 
+        {
+            <div class="form-group">
+                @Html.Label("movieName", "Elokuvan nimi: ")
+                @Html.TextBox("movieName", null, new { @class = "form-control" })
+                @Html.Label("description", "Kuvaus: ")
+                @Html.TextArea("description", new { @class = "form-control" })
+                @Html.Label("category", "Genre: ")
+                @Html.DropDownList("category",
+                    new SelectList(Enum.GetValues(typeof(Movie.ECategory))),
+                    new { @class = "form-control" })
+                <br>
+                <fieldset>
+                    <legend>Esitysaika</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Label("Alkaa")
+                            <div class="radio">
+                                <label>@Html.RadioButton("startTime", "15:00") 15:00</label>
                             </div>
-                        </fieldset>
-                        <hr />
-                        <div class="checkbox">
-                            <label>@Html.CheckBox("terms", true) Hyväksyn lisäyksen ehdot</label>
+                            <div class="radio">
+                                <label>@Html.RadioButton("startTime", "16:00") 16:00</label>
+                            </div>
                         </div>
-
-                        <input type="submit" class="button expanded" value="Lisää elokuva">
-
-
+                        <div class="col-md-6">
+                            @Html.Label("Loppuu")
+                            <div class="radio">
+                                <label>@Html.RadioButton("endTime", "17:00") 17:00</label>
+                            </div>
+                            <div class="radio">
+                                <label>@Html.RadioButton("endTime", "18:00") 18:00</label>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </fieldset>
+                <hr />
+                <div class="checkbox">
+                    <label> Hyväksyn lisäyksen ehdot</label>
+                </div>
+                <button class="form-control" type="submit">Lisää elokuva</button>
+
             </div>
-
-
-            <div class="medium-9 cell">
-                <h1 align="center">Sello Finnkino</h1>
-
-                <table class="hover unstriped" id="movieTable">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(m => m.movieName)</th>
-                            <th>@Html.DisplayNameFor(m => m.category)</th>
-                            <th>@Html.DisplayNameFor(m => m.rating)</th>
-                            <th>@Html.DisplayNameFor(m => m.startTime)</th>
-                            <th>@Html.DisplayNameFor(m => m.endTime)</th>
-
-                        </tr>
-                    </thead>
-                    <tbody id="movieTableBody">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        }
+        
     </div>
+
+    <div class="col-md-9">
+        <h1 align="center">Elokuvateatteri X</h1>
+        
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(m => m.movieName)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.category)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.description)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.startTime)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.endTime)</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+
+            @{
+                int count = 0; //Muuttuja laskemaan elokuvien kokonaismäärää
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.movieName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.startTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.endTime)
+                        </td>
+                    </tr>
+                    count++;
+                }
+            }
+
+            <tr>
+
+                <td>
+                    Elokuvia yhteensä: @count
+                </td>
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+  
 </div>
-
-@Scripts.Render("~/bundles/otherscripts")
-=======
-=======
->>>>>>> parent of debc9da... Tehtävä 1
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-<<<<<<< HEAD
-</div>
->>>>>>> parent of debc9da... Tehtävä 1
-=======
-</div>
->>>>>>> parent of debc9da... Tehtävä 1

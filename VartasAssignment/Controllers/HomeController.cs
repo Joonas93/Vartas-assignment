@@ -1,30 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VartasAssignment.Models;
 
 namespace VartasAssignment.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
-            return View();
+          
+           //Ohjataan aloitussivuksi Storyyn tähän tehtävään
+          return RedirectToAction("Index","Story");
+
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
+
+    
 }

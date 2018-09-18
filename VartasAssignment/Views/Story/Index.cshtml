@@ -1,0 +1,71 @@
+﻿@using VartasAssignment.Models
+
+
+@model VartasAssignment.Models.Story
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+>
+<div class="row">
+
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+        <h4>
+            Tarinakone 3000
+        </h4>
+        @using (Html.BeginForm("Story", "Story"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(m => m.name, "Nimesi: ")
+                @Html.TextBoxFor(m => m.name, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Age, "Ikäsi ")
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Sex, "Sukupuolesi: ")
+                @Html.DropDownListFor(m => m.Sex,
+                    new SelectList(Enum.GetValues(typeof(Story.eSex))),
+                    new { @class = "form-control" })
+
+                <br>
+                <fieldset>
+                    <legend>Tekstin ulkonäköasetukset</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Color, "Väri")
+                            <div class="radio">
+                                <label>@Html.RadioButtonFor(m => m.Color, "blue") Sininen</label>
+                            </div>
+                            <div class="radio">
+                                <label>@Html.RadioButtonFor(m => m.Color, "red") Punainen</label>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Color, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.FontSize, "Fontin koko")
+                            <div class="radio">
+                                <label>@Html.RadioButtonFor(m => m.FontSize, "14") 14</label>
+                            </div>
+                            <div class="radio">
+                                <label>@Html.RadioButtonFor(m => m.FontSize, "24") 24</label>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.FontSize, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </fieldset>
+                <hr />
+
+                <button class="form-control" type="submit">Luo tarina</button>
+
+            </div>
+        }
+
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")
