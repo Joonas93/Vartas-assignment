@@ -45,7 +45,7 @@ namespace VartasAssignment.Models
             {
                 kind = "komea mies";
             }                
-            else if (this.Sex == "Mainen")
+            else if (this.Sex == "Nainen")
             {            
                 kind = "kaunis nainen";
             }
