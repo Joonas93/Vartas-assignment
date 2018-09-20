@@ -1,0 +1,5 @@
+api/GamesAPI //Palauttaa kaikki pelit tietokannasta
+
+api/GamesAPI?name=<nimi> //Palauttaa kaikki sen nimiset pelit
+
+api/GamesAPI?category=<kategoria> //Palauttaa kaikki kyseisen kategorian pelit
