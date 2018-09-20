@@ -1,61 +1,145 @@
-﻿@model IEnumerable<VartasAssignment.Models.Game>
+﻿
+
+@model VartasAssignment.Models.Game
+
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var pelit = ViewBag.gamedb;
 }
 
+
 <h2>Tietokannan sisältö</h2>
-
-<div class="container">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edited)
-            </th>
-
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.ProductID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)€
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Edited)
-                </td>
+<div class="row">
+    <div class="col-md-3">
 
 
-            </tr>
+        @{
+
+            string method;
+            string button;
+            //Tarkistetaan onko olio tyhjä. 0 on productID:n(int) oletusarvo, kun olio luodaan. Tämä sitten määrittelee, lisääkö vaiko poistaako nappi
+            if (Model.ProductID == 0)
+            {
+                button = "Lisää";
+                method = "Add";
+
+            }
+            else
+            {
+                button = "Tallenna";
+                method = "Update";
+
+            }
         }
 
-    </table>
+        <div class="form-group">
+            @using (Html.BeginForm(@method, "Games"))
+
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                // Toistoa, mutta yritetty jumpata ylempään "elseen" kyseisiä HTML-helppereitä muuttujiin, mutta buginomaisesti(?) valitti puuttuvaa } line 1:lta. Mennään näillä
+                //Jos olio  ei ole tyhjä(ollaan muokkaamassa riviä), niin näytetään tuotenumero
+                if (Model.ProductID != 0)
+                {
+                    @Html.LabelFor(m => m.ProductID);
+                    @Html.TextBoxFor(m => m.ProductID, new { @class = "form-control", @readonly = "true" });
+                }
+
+
+
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Category)
+                @Html.TextBoxFor(m => m.Category, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Description)
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Price)
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @Input = "text" })
+                @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                <hr />
+                <button type="submit" class="form-control">@button</button>
+
+            }
+
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="container">
+
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Edited)
+                    </th>
+                    <th></th>
+
+                </tr>
+
+                @foreach (var item in ViewBag.gamedb)
+                {
+
+                    <tr>
+                        <td>
+
+                            @using (Html.BeginForm("Index", "Games", new { Id = item.ProductID }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" style="border: none; background: none">@item.ProductID</button>
+                            }
+
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Category
+                        </td>
+                        <td>
+                            @item.Price€
+                        </td>
+                        <td>
+                            @item.Description
+                        </td>
+                        <td>
+                            @item.Edited
+                        </td>
+                        <td>
+
+                            @using (Html.BeginForm("Delete", "Games", new { Id = item.ProductID }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn-danger">Poista</button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
 </div>

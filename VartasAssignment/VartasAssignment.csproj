@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201809190823327_Initial.Designer.cs">
       <DependentUpon>201809190823327_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809191945228_Hi.cs" />
+    <Compile Include="Migrations\201809191945228_Hi.Designer.cs">
+      <DependentUpon>201809191945228_Hi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809190823327_Initial.resx">
       <DependentUpon>201809190823327_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809191945228_Hi.resx">
+      <DependentUpon>201809191945228_Hi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

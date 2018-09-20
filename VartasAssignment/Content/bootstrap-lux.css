@@ -3102,6 +3102,13 @@ fieldset:disabled a.btn {
   background-color: transparent;
 }
 
+.nakymaton-button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+}
+
 .btn-link:hover {
   color: black;
   text-decoration: underline;

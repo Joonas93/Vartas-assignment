@@ -13,5 +13,6 @@ namespace VartasAssignment.Controllers
         {
             return RedirectToAction("Index", "Games");
         }
+
     }
 }
