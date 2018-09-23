@@ -69,7 +69,7 @@ namespace VartasAssignment.Controllers
             
             game.Update(); //Päivitetään timestamp
             db.Entry(game).State = EntityState.Modified;
-            db.SaveChanges();
+           db.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -83,7 +83,7 @@ namespace VartasAssignment.Controllers
             }
             game.Update();//päivitetään timestamp
             db.Games.Add(game);
-            db.SaveChanges();
+           db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

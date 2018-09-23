@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Devtalk.EF.CodeFirst, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EFCodeFirst.CreateTablesOnly.1.0.2\lib\Devtalk.EF.CodeFirst.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -117,6 +120,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivator.1.4\lib\NETFramework40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -160,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DontDropDbJustCreateTablesIfModelChangedStart.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -169,17 +176,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809182047277_InitialCreate.cs" />
-    <Compile Include="Migrations\201809182047277_InitialCreate.Designer.cs">
-      <DependentUpon>201809182047277_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809190823327_Initial.cs" />
-    <Compile Include="Migrations\201809190823327_Initial.Designer.cs">
-      <DependentUpon>201809190823327_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809191945228_Hi.cs" />
-    <Compile Include="Migrations\201809191945228_Hi.Designer.cs">
-      <DependentUpon>201809191945228_Hi.cs</DependentUpon>
+    <Compile Include="Migrations\201809230839499_initial.cs" />
+    <Compile Include="Migrations\201809230839499_initial.Designer.cs">
+      <DependentUpon>201809230839499_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
@@ -201,7 +200,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\BETehtävä2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RekryAppi - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Tarinakone3000 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\VartasAssignment - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -244,14 +245,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809182047277_InitialCreate.resx">
-      <DependentUpon>201809182047277_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809190823327_Initial.resx">
-      <DependentUpon>201809190823327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809191945228_Hi.resx">
-      <DependentUpon>201809191945228_Hi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809230839499_initial.resx">
+      <DependentUpon>201809230839499_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

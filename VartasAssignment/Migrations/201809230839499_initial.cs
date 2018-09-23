@@ -3,7 +3,7 @@ namespace VartasAssignment.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -12,9 +12,9 @@ namespace VartasAssignment.Migrations
                 c => new
                     {
                         ProductID = c.Int(nullable: false, identity: true),
-                        Category = c.String(),
-                        Name = c.String(),
-                        Price = c.Double(nullable: false),
+                        Category = c.String(nullable: false),
+                        Name = c.String(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Description = c.String(),
                         Edited = c.DateTime(nullable: false),
                     })

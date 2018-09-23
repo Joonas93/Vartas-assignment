@@ -20,9 +20,8 @@ namespace VartasAssignment.Models
         [Display(Name = "Nimi")]
         public string Name { get; set; }
         [Required]
+        [RegularExpression(@"^-?\d*\,?\d*", ErrorMessage = "Käytä pilkkua sekä tarkista syöte!")]
         [Display(Name = "Hinta")]
-       [RegularExpression(@"^-?\d*\,?\d*", ErrorMessage = "Käytä pilkkua sekä tarkista syöte!")]
-        
         public decimal Price { get; set; }        
         [Display(Name = "Kuvaus")]
         public string Description { get; set; }
@@ -38,6 +37,33 @@ namespace VartasAssignment.Models
     }
     public class GameDBContext : DbContext
     {
+        public GameDBContext() : base("GameDBContext")
+        {
+            
+
+            //Database.SetInitializer<GameDBContext>(new DropCreateDatabaseIfModelChanges<GameDBContext>());
+           // Database.SetInitializer<GameDBContext>(new DropCreateDatabaseAlways<GameDBContext>());
+            Database.SetInitializer(new GameDBInitializer());
+        }
         public DbSet<Game> Games { get; set; }
+    }
+
+    public class GameDBInitializer : DropCreateDatabaseAlways<GameDBContext>
+    {
+
+
+        protected override void Seed(GameDBContext context)
+        {
+            IList<Game> gamelist = new List<Game>();
+
+            gamelist.Add(new Game() { Name = "World of Tanks", Category = "Sotapeli", Description = "Taistele tankeilla", Price = 0.99m, Edited = DateTime.Now });
+            gamelist.Add(new Game() { Name = "World of Warcraft", Category = "RPG", Description = "Seikkaile örkeillä", Price = 14.99m, Edited = DateTime.Now });
+            gamelist.Add(new Game() { Name = "Call of Duty", Category = "Sotapeli", Description = "Taistele tantereella", Price = 19.99m, Edited = DateTime.Now });
+            gamelist.Add(new Game() { Name = "Hearts of Iron", Category = "Strategia", Description = "Valloita maailma", Price = 9.99m, Edited = DateTime.Now });
+            gamelist.Add(new Game() { Name = "Destiny", Category = "Scifi", Description = "Taistele avaruudessa", Price = 29.99m, Edited = DateTime.Now });
+            context.Games.AddRange(gamelist);
+
+            base.Seed(context);
+        }
     }
 }
